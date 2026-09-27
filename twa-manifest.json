@@ -1,0 +1,16 @@
+{
+  "packageId": "com.serviqo",
+  "host": "personal-ano-967805808709.asia-southeast1.run.app",
+  "startUrl": "/",
+  "name": "SERVIQO",
+  "launcherName": "SERVIQO",
+  "display": "standalone",
+  "orientation": "portrait",
+  "themeColor": "#ffffff",
+  "navigationColor": "#ffffff",
+  "navigationDividerColor": "#ffffff",
+  "backgroundColor": "#ffffff",
+  "iconUrl": "https://personal-ano-967805808709.asia-southeast1.run.app/icon-512x512.png",
+  "maskableIconUrl": "https://personal-ano-967805808709.asia-southeast1.run.app/icon-maskable-512x512.png",
+  "enableNotifications": false
+}
