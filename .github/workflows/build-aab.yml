@@ -53,4 +53,4 @@ jobs:
         with:
           name: SERVIQO-AAB
           path: "./app-release-bundle.aab"
-          if-no-files-found: error
+          if-no-files-found
