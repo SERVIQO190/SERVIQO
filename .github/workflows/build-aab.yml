@@ -1,4 +1,4 @@
-name: Build SERVIQO AAB
+namename: Build SERVIQO AAB
 
 on:
   workflow_dispatch:
@@ -32,10 +32,11 @@ jobs:
           printf '%s' "$KEYSTORE_B64" | base64 --ignore-garbage --decode > upload-keystore.jks
           test -s upload-keystore.jks
           echo "Keystore restored successfully"
+          ls -lh upload-keystore.jks
 
       - name: Generate Android project
         run: |
-          bubblewrap update --manifest="twa-manifest.json"
+          bubblewrap update --manifest="twa-manifest.json" --no-prompt
 
       - name: Build AAB
         env:
