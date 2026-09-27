@@ -44,12 +44,4 @@ jobs:
         run: |
           bubblewrap build \
             --manifest="twa-manifest.json" \
-            --signingKeyPath="./upload-keystore.jks" \
-            --signingKeyAlias="upload"
-
-      - name: Upload AAB
-        uses: actions/upload-artifact@v4
-        with:
-          name: SERVIQO-AAB
-          path: ./app-release-bundle.aab
-          if-no-files-found: error
+            --signingKeyPath="./upload
