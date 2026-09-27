@@ -1,0 +1,52 @@
+name: Build SERVIQO AAB
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install Bubblewrap
+        run: npm install -g @bubblewrap/cli
+
+      - name: Restore keystore
+        env:
+          KEYSTORE_B64: ${{ secrets.BUBBLEWRAP_KEYSTORE_BASE64 }}
+        run: |
+          echo "$KEYSTORE_B64" | base64 --decode > upload-keystore.jks
+
+      - name: Generate Android project
+        run: |
+          bubblewrap update --manifest=twa-manifest.json
+
+      - name: Build AAB
+        env:
+          BUBBLEWRAP_KEYSTORE_PASSWORD: ${{ secrets.BUBBLEWRAP_KEYSTORE_PASSWORD }}
+          BUBBLEWRAP_KEY_PASSWORD: ${{ secrets.BUBBLEWRAP_KEY_PASSWORD }}
+        run: |
+          bubblewrap build \
+            --manifest=twa-manifest.json \
+            --signingKeyPath=./upload-keystore.jks \
+            --signingKeyAlias=upload
+
+      - name: Upload AAB
+        uses: actions/upload-artifact@v4
+        with:
+          name: SERVIQO-AAB
+          path: app-release-bundle.aab
