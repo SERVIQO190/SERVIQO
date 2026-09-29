@@ -1,4 +1,4 @@
-amename: Build SERVIQO AAB
+Build SERVIQO AAB
 
 on:
   workflow_dispatch:
