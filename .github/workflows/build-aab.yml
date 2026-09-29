@@ -1,5 +1,4 @@
-
-namename: Build SERVIQO AAB
+amename: Build SERVIQO AAB
 
 on:
   workflow_dispatch:
@@ -54,4 +53,4 @@ jobs:
         with:
           name: SERVIQO-AAB
           path: "./app-release-bundle.aab"
-          if-no-files-found
+          if-no-files-
