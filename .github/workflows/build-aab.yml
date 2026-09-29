@@ -36,7 +36,7 @@ jobs:
 
       - name: Generate Android project
         run: |
-          bubblewrap update --manifest="twa-manifest.json" --no-prompt
+          Run printf "n\n" | bubblewrap update --manifest=twa-manifest.json
 
       - name: Build AAB
         env:
