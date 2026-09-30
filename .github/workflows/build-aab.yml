@@ -37,14 +37,19 @@ jobs:
           - name: Generate Android project
   env:
     CI: true
+    BUBBLEWRAP_JAVA_HOME: ${{ env.JAVA_HOME }}
   run: |
     bubblewrap update \
       --manifest=twa-manifest.json \
-      --directory=.
+      --directory=. \
+      --no-interactive
 
-      - name: Build AAB
-        env:
-          BUBBLEWRAP_KEYSTORE_PASSWORD: ${{ secrets.BUBBLEWRAP_KEYSTORE_PASSWORD }}
-          BUBBLEWRAP_KEY_PASSWORD: ${{ secrets.BUBBLEWRAP_KEY_PASSWORD }}
-        run: |
-          bubblewrap build \
+- name: Build AAB
+  env:
+    CI: true
+    BUBBLEWRAP_KEYSTORE_PASSWORD: ${{ secrets.BUBBLEWRAP_KEYSTORE_PASSWORD }}
+    BUBBLEWRAP_KEY_PASSWORD: ${{ secrets.BUBBLEWRAP_KEY_PASSWORD }}
+    BUBBLEWRAP_JAVA_HOME: ${{ env.JAVA_HOME }}
+  run: |
+    bubblewrap build \
+      --no-interactive
