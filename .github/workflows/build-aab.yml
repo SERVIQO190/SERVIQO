@@ -1,4 +1,4 @@
-name: Build SERVIQO AAB
+Build SERVIQO AAB
 
 on:
   workflow_dispatch:
@@ -15,21 +15,7 @@ jobs:
         uses: actions/setup-java@v5
         with:
           distribution: temurin
-          java-version: '17'
-
-      - name: Setup Node 20
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-
-      - name: Install Bubblewrap
-        run: |
-          npm install -g @bubblewrap/cli
-          bubblewrap --version
-
-      - name: Restore keystore
-        env:
-          KEYSTORE_B64: ${{ secrets.BUBBLEWRAP_KEYSTORE_BASE64 }}
+          java.BUBBLEWRAP_KEYSTORE_BASE64 }}
         run: |
           printf '%s' "$KEYSTORE_B64" | base64 --decode > upload-keystore.jks
           test -s upload-keystore.jks
