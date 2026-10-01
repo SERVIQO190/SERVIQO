@@ -1,4 +1,4 @@
-Build SERVIQO AAB
+ SERVIQO AAB
 
 on:
   workflow_dispatch:
