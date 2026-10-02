@@ -1,7 +1,7 @@
-Build SERVIQO AAB
+ SERVIQO AAB
 
 on:
-  workflow_dispatch:
+  workflow_dispatch
 
 jobs:
   build:
@@ -32,20 +32,4 @@ jobs:
           cat "$HOME/.bubblewrap/config.json"
           bubblewrap doctor
 
-      - name: Generate Android project
-        run: |
-          bubblewrap update --manifest=twa-manifest.json
-
-      - name: Build AAB
-        env:
-          BUBBLEWRAP_KEYSTORE_PASSWORD: ${{ secrets.BUBBLEWRAP_KEYSTORE_PASSWORD }}
-          BUBBLEWRAP_KEY_PASSWORD: ${{ secrets.BUBBLEWRAP_KEY_PASSWORD }}
-        run: |
-          bubblewrap build
-
-      - name: Upload AAB
-        uses: actions/upload-artifact@v4
-        with:
-          name: SERVIQO-AAB
-          path: |
-            **/*.aab
+      - name: Genera
